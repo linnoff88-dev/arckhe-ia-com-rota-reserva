@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IA com Rota Reserva — Continúa tu prueba cuando la IA alcance su límite</title>
+<link rel="canonical" href="https://inematds.github.io/ia-com-rota-reserva/guia/es/">
+<meta name="description" content="Conoce seis formas de crear prototipos con IA y prueba el cambio de proveedor en una demostración en el navegador.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/ia-com-rota-reserva/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/ia-com-rota-reserva/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/ia-com-rota-reserva/guia/es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(226,162,59,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+  section{scroll-margin-top:115px} .route-grid{margin-bottom:16px}.route-grid label{display:grid;gap:8px}.route-grid select{width:100%;font:inherit;color:var(--txt);background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:10px} button.btn{border:1px solid transparent;cursor:pointer} :focus-visible{outline:2px solid var(--sky);outline-offset:3px} @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+  .preview-product{margin-top:18px;display:grid;gap:14px;grid-template-columns:minmax(180px,1fr) 1fr;align-items:center}
+  .preview-product[hidden]{display:none}.ear-stage{min-height:172px;display:grid;place-items:center;background:var(--bg2);border-radius:12px;perspective:360px}
+  .headphones{--finish:#525866;position:relative;width:114px;height:98px;border:12px solid var(--finish);border-bottom:0;border-radius:66px 66px 0 0;transform:rotateY(var(--turn,0deg));transition:transform 180ms ease;box-shadow:inset 0 4px 14px #0007}
+  .headphones::before,.headphones::after{content:"";position:absolute;bottom:-6px;width:33px;height:51px;border-radius:13px;background:var(--finish);border:3px solid #22252d;box-shadow:inset 2px 2px 4px #ffffff39}
+  .headphones::before{left:-19px}.headphones::after{right:-19px}
+  .preview-controls{display:grid;gap:12px}.preview-controls label{display:grid;gap:4px}
+  .preview-controls select{font:inherit;background:var(--bg2);color:var(--txt)}
+  @media(max-width:540px){.preview-product{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){.headphones{transition:none}}
+  .resumo img{margin-top:18px;width:100%;max-width:660px;height:auto;border:1px solid var(--line);border-radius:14px;display:block}
+  body.light nav{background:rgba(246,247,249,.95)}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top">IA com Rota Reserva</a><span class="sep">|</span>
+  <span class="clubpro"><a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a><span class="sep">-</span><a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a></span>
+  <div class="links"><a class="sec" href="#explicado">La ventaja</a><a class="sec" href="#como">Herramientas</a><a class="sec" href="#comecar">Empezar</a><a class="sec" href="#prova">Ejemplo</a>
+    <span class="lang"><a href="../index.html">PT</a><a href="../en/index.html">EN</a><a class="on" href="index.html" aria-current="page">ES</a></span>
+    <button class="tgl" id="themeToggle" type="button" aria-label="Cambiar tema" title="Cambiar tema">🌙</button><a class="btn" href="https://github.com/inematds/ia-com-rota-reserva">GitHub</a></div>
+</div></nav>
+<header class="hero" id="top"><div class="glow"></div><div class="wrap">
+  <div><span class="chip">FreeLLMAPI · Claude · Arena · v0</span>
+  <h1>Continúa tu proyecto cuando la IA <span class="amb">alcance su límite</span></h1>
+  <p class="lead">Configura dos opciones en FreeLLMAPI y, si la primera alcanza su límite, la segunda puede intentar la misma solicitud. Simula el cambio sin una cuenta: cuando una ruta responde, puedes cambiar el color y girar los auriculares.</p>
+  <div class="cta"><a class="btn" href="#prova">Probar el cambio</a><a class="btn ghost" href="#como">Conocer las herramientas</a></div></div>
+  <figure><img src="../assets/hero.jpg" width="1400" height="788" alt="Rutas alternativas entre una laptop y unos auriculares"></figure>
+</div></header>
+<section id="resumo" class="resumo"><div class="wrap"><span class="chip">En resumen</span><p>IA con Ruta de Respaldo es una guía con una demostración para quienes quieren probar herramientas de IA con límites de uso. Muestra cómo FreeLLMAPI intenta usar otro proveedor, el servicio que recibe tu solicitud y proporciona el modelo, y dónde entran Claude Desktop, Claude Code, Arena y v0. Puedes empezar por la demostración, que se ejecuta en el navegador y usa respuestas ficticias.</p><img src="../assets/banner-grade.jpg" alt="Herramientas, rutas alternativas y ejemplos de prototipado con IA" loading="lazy" width="1200" height="675"></div></section>
+<section id="explicado"><div class="wrap"><h2>¿Qué cambia cuando la IA se satura?</h2><p class="sub">Decide de antemano qué merece un segundo intento y cómo comprobar el resultado.</p>
+<div class="grid g2"><article class="card"><h3>Una sola ruta</h3><p>El servicio alcanza su límite y tienes que esperar o repetir manualmente la solicitud en otra herramienta.</p></article><article class="card"><h3>Una ruta alternativa</h3><p>El enrutador prueba otra opción que configuraste. Comprueba quién respondió y prueba el resultado antes de usarlo.</p></article></div>
+</div></section>
+<section id="base"><div class="wrap"><h2>De dónde procede la información</h2><p class="sub">Conoce la demostración original y consulta los manuales actuales para ver qué ofrece cada herramienta.</p><div class="grid g4">
+<article class="card"><h3>FreeLLMAPI</h3><a href="https://github.com/tashfeenahmed/freellmapi">Proyecto y documentación</a></article>
+<article class="card"><h3>Claude</h3><a href="https://support.claude.com/en/articles/18426225-move-from-claude-enterprise-to-claude-desktop-on-a-cloud-provider">Cómo conectar la aplicación a otro servicio</a></article>
+<article class="card"><h3>Arena</h3><a href="https://platform.arena.ai/docs/api">Modelos y acceso</a></article>
+<article class="card"><h3>v0</h3><a href="https://v0.app/pricing">Planes y límites</a></article></div>
+<p><a href="https://www.youtube.com/watch?v=wbchejAAe5A">Ver el video de referencia</a></p>
+</div></section>
+<section id="dia"><div class="wrap"><h2>Cómo integrarlo en tu día</h2><p class="sub">Empieza con una tarea pequeña y un resultado que puedas comprobar.</p><div class="grid g3">
+<article class="card"><h3>Por la mañana · Elige una tarea</h3><p>Describe el resultado esperado. En un configurador de auriculares, cambiar el color debe cambiar el producto en pantalla.</p></article>
+<article class="card"><h3>Durante la prueba · Comprueba quién respondió</h3><p>Un límite temporal puede activar la segunda opción. Comprueba el orden de los intentos y el modelo utilizado.</p></article>
+<article class="card"><h3>Antes de enviarlo · Abre el resultado</h3><p>En una herramienta de documentos, descarga el archivo y ábrelo en otra aplicación para comprobar el formato y el contenido.</p></article></div>
+</div></section>
+<section id="video"><div class="wrap"><h2>Mira cómo funciona la ruta alternativa</h2><p>Video en portugués</p><iframe title="Mira cómo funciona la ruta alternativa" style="display:block;max-width:940px;width:100%;height:auto;aspect-ratio:16/9;border:0;border-radius:12px" src="https://www.youtube-nocookie.com/embed/R_Mf8iMYAQk" loading="lazy" allowfullscreen></iframe><p><a href="https://www.youtube.com/watch?v=R_Mf8iMYAQk">Ver en YouTube</a></p></div></section>
+<section id="como"><div class="wrap"><h2>¿Qué función cumple cada herramienta?</h2><p class="sub">La aplicación recibe tu solicitud. El modelo responde. El enrutador decide a dónde dirigirla.</p><div class="grid g3">
+<article class="card"><h3>Claude Desktop</h3><p>Cuando esta función está disponible, la aplicación puede enviar tus solicitudes a otro servicio de IA. Puedes elegir FreeLLMAPI para enrutar y cambiar las rutas.</p></article>
+<article class="card"><h3>Claude Code en la aplicación</h3><p>La pestaña Code trabaja con los archivos de la carpeta que eliges. Se usó en el video para crear el configurador de auriculares en 3D.</p></article>
+<article class="card"><h3>Claude Code en la terminal</h3><p>Abres el asistente en la carpeta del proyecto. Es la opción para quienes quieren revisar los archivos y seguir la ejecución mediante comandos.</p></article>
+<article class="card"><h3>FreeLLMAPI Playground</h3><p>Entorno de pruebas del propio enrutador. El video usa esta pantalla para solicitar un prototipo de herramienta de documentos.</p></article>
+<article class="card"><h3>Arena</h3><p>Servicio independiente que elige la ruta por su cuenta. Para elegir directamente un modelo, comprueba si tu cuenta tiene crédito promocional vigente o saldo de pago.</p></article>
+<article class="card"><h3>v0</h3><p>Genera y muestra prototipos de interfaces en el navegador. Consulta el plan actual y las opciones que aparecen en tu cuenta.</p></article></div>
+<p class="sub">En la referencia, FreeLLMAPI reúne Google AI Studio, Kilo Gateway, OpenRouter, NVIDIA, Z.ai y Cloudflare Workers AI. Cada proveedor tiene sus propias reglas de acceso y puede recibir el contenido que envíes.</p>
+</div></section>
+<section id="comecar"><div class="wrap"><h2>Cómo empezar</h2><p class="sub">Después de la simulación, usa el asistente que ya conoces en el navegador y pega la solicitud de abajo.</p>
+<div class="grid g3"><article class="card"><h3>Usa tu chat habitual</h3><p>Abre el asistente de IA que ya usas en el navegador.</p></article><article class="card"><h3>Pega el ejemplo de auriculares</h3><p>La solicitud ya viene preparada con una prueba pequeña y datos ficticios.</p></article><article class="card"><h3>Decide con el plan a la vista</h3><p>Lee el plan, comprueba dónde se generará la respuesta y solo entonces decide si quieres continuar.</p></article></div>
+<p id="prompt">Quiero probar una ruta de respaldo para un configurador ficticio de auriculares. El resultado debe cambiar el color y girar la vista. Usa como contexto https://inematds.github.io/ia-com-rota-reserva/guia/es/ . Sugiere una herramienta y una prueba que pueda verificar. Indica dónde se procesarían los datos y cuánto podría costar. Espera mi aprobación antes de usar servicios externos o cambiar configuraciones.</p>
+<button type="button" class="btn" id="copy">Copiar solicitud</button> <span id="copy-status" role="status"></span>
+<p><a href="https://github.com/inematds/ia-com-rota-reserva/blob/main/README.es.md#instalación-técnica">Ver la configuración en el README</a></p>
+</div></section>
+<section id="prova"><div class="wrap"><h2>Prueba la ruta alternativa</h2><p class="sub">En la referencia, Playground logró responder en modo automático después de registrar un límite. Aquí controlas lo que ocurre con cada ruta. Pulsa Probar ruta para ver los intentos. Las respuestas se simulan en el navegador.</p>
+<div class="card">
+<form id="simulation"><div class="grid g2 route-grid">
+<label>Proveedor principal<select id="primary"><option value="busy">Límite de uso</option><option value="ok">Disponible</option><option value="down">Inestabilidad</option><option value="denied">Acceso denegado</option></select></label>
+<label>Proveedor alternativo<select id="backup"><option value="ok">Disponible</option><option value="busy">Límite de uso</option><option value="down">Inestabilidad</option></select></label>
+</div><button type="submit" class="btn">Probar ruta</button></form>
+<div id="outcome" role="status" aria-live="polite" aria-atomic="true"></div>
+<div id="product" class="preview-product" hidden>
+<div class="ear-stage" aria-hidden="true"><div class="headphones" id="headphones"></div></div>
+<div class="preview-controls"><label>Acabado<select id="finish"><option value="#525866">Grafito</option><option value="#bc9854">Dorado</option><option value="#7a9b8b">Verde</option></select></label><label>Rotación<input type="range" id="rotation" min="-65" max="65" value="0"></label></div>
+</div>
+<template id="demo-copy"><span data-message="mainOk">El proveedor principal respondió.</span><span data-message="mainBusy">El proveedor principal alcanzó el límite de uso.</span><span data-message="mainDown">El proveedor principal no está disponible temporalmente.</span><span data-message="mainDenied">Se denegó el acceso al proveedor principal. Comprueba la clave utilizada para iniciar sesión.</span><span data-message="backOk">El proveedor alternativo respondió.</span><span data-message="backBusy">El proveedor alternativo también alcanzó el límite de uso.</span><span data-message="backDown">El proveedor alternativo no está disponible temporalmente.</span><span data-message="none">Ninguna ruta completó la solicitud. Inténtalo más tarde.</span><span data-message="artifact">Respuesta simulada · Abre el configurador de abajo y prueba el color y la rotación.</span><span data-message="copied">Solicitud copiada.</span><span data-message="copyError">Selecciona la solicitud de arriba para copiarla.</span></template>
+<p><a class="btn ghost" href="#comecar">Ver la solicitud para planificar en el chat</a></p>
+</div></div></section>
+<section id="faq"><div class="wrap"><h2>Preguntas frecuentes</h2><div class="grid g2" style="margin-top:16px">
+<article class="card"><h3>¿Usaré los mismos modelos que en Claude?</h3><p>Cuando la aplicación está conectada a FreeLLMAPI, la respuesta depende del modelo que seleccione el enrutador. Consulta el proveedor que respondió en el registro de la solicitud.</p></article>
+<article class="card"><h3>¿Cuánto cuesta?</h3><p>La prueba de esta página se ejecuta en tu navegador. Para usar servicios externos, consulta los límites, los precios y las condiciones del plan elegido.</p></article>
+<article class="card"><h3>¿Puedo enviar archivos de clientes?</h3><p>Para aprender, usa ejemplos ficticios. Antes de enviar datos reales, comprueba adónde irán y cuáles son las condiciones de cada servicio.</p></article>
+<article class="card"><h3>¿Qué pasa si también falla la ruta alternativa?</h3><p>Lee el error, comprueba los permisos y espera a que el servicio vuelva a estar disponible. Prueba el caso en la demostración para ver la diferencia.</p></article>
+</div><p>¿Qué tarea probarías primero con una ruta alternativa?</p></div></section>
+<footer><div class="wrap"><a href="https://inema.club">INEMA.CLUB</a> · <a href="https://github.com/inematds/ia-com-rota-reserva">GitHub</a></div></footer>
+<script>
+const themeButton = document.querySelector('#themeToggle');
+function applyTheme(light) {
+  document.body.classList.toggle('light', light);
+  themeButton.textContent = light ? '☀️' : '🌙';
+  themeButton.setAttribute('aria-pressed', String(light));
+}
+try { applyTheme(localStorage.getItem('inema-rota-theme') === 'light'); } catch { applyTheme(false); }
+themeButton.addEventListener('click', () => {
+  const light = !document.body.classList.contains('light');
+  applyTheme(light);
+  try { localStorage.setItem('inema-rota-theme', light ? 'light' : 'dark'); } catch {}
+});
+const copyTemplate = document.querySelector('#demo-copy').content;
+const phrase = key => copyTemplate.querySelector('[data-message="' + key + '"]').textContent;
+document.querySelector('#copy').addEventListener('click', async () => {
+  const status = document.querySelector('#copy-status');
+  const prompt = document.querySelector('#prompt');
+  if (location.protocol !== 'file:' && navigator.clipboard) {
+    try {
+      await navigator.clipboard.writeText(prompt.textContent);
+      status.textContent = phrase('copied');
+      return;
+    } catch {}
+  }
+  const selection = window.getSelection();
+  const range = document.createRange();
+  range.selectNodeContents(prompt);
+  selection.removeAllRanges();
+  selection.addRange(range);
+  const copied = document.execCommand('copy');
+  if (copied) selection.removeAllRanges();
+  status.textContent = phrase(copied ? 'copied' : 'copyError');
+});
+const mainStatus = {ok:'mainOk', busy:'mainBusy', down:'mainDown', denied:'mainDenied'};
+const backupStatus = {ok:'backOk', busy:'backBusy', down:'backDown'};
+document.querySelector('#simulation').addEventListener('submit', event => {
+  event.preventDefault();
+  const main = document.querySelector('#primary').value;
+  const backup = document.querySelector('#backup').value;
+  const steps = [mainStatus[main]];
+  if (main === 'ok') steps.push('artifact');
+  if (main === 'busy' || main === 'down') {
+    steps.push(backupStatus[backup], backup === 'ok' ? 'artifact' : 'none');
+  }
+  const report = document.createElement('ol');
+  for (const step of steps) {
+    const item = document.createElement('li');
+    item.textContent = phrase(step);
+    report.append(item);
+  }
+  document.querySelector('#outcome').replaceChildren(report);
+  document.querySelector('#product').hidden = !steps.includes('artifact');
+});
+const headphones = document.querySelector('#headphones');
+document.querySelector('#finish').addEventListener('change', event => {
+  headphones.style.setProperty('--finish', event.target.value);
+});
+document.querySelector('#rotation').addEventListener('input', event => {
+  headphones.style.setProperty('--turn', event.target.value + 'deg');
+});
+</script>
+</body>
+</html>
