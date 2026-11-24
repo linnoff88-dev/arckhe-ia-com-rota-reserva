@@ -1,10 +1,10 @@
 # IA com Rota Reserva
 
-[![IA com Rota Reserva](guia/assets/hero.jpg)](https://inematds.github.io/ia-com-rota-reserva/guia/en/)
+[![IA com Rota Reserva](guia/assets/hero.jpg)](https://linnoff88-dev.github.io/
 
 **[Português](README.md) · [English](README.en.md) · [Español](README.es.md)**
 
-[Open the guide and test the backup route](https://inematds.github.io/ia-com-rota-reserva/guia/en/)
+[Open the guide and test the backup route](https://linnoff88-dev.github.io/
 
 🎬 [Video in Portuguese](https://www.youtube.com/watch?v=R_Mf8iMYAQk)
 
@@ -14,11 +14,11 @@ IA com Rota Reserva is a guide with a demonstration for people who want to try A
 
 **Prompt for your assistant**
 
-> I want to try a backup route for a fictional headphone configurator. The result needs to change the color and rotate the view. Use https://inematds.github.io/ia-com-rota-reserva/guia/en/ as context. Suggest a tool and a test I can verify. Say where the data would be processed and how much it might cost. Wait for my approval before using external services or changing settings.
+> I want to try a backup route for a fictional headphone configurator. The result needs to change the color and rotate the view. Use https://linnoff88-dev.github.io/ as context. Suggest a tool and a test I can verify. Say where the data would be processed and how much it might cost. Wait for my approval before using external services or changing settings.
 
 ## Technical setup
 
-To try it without installing anything, [download the project ZIP](https://github.com/inematds/ia-com-rota-reserva/archive/refs/heads/main.zip), extract the folder, and double-click `guia/index.html`.
+To try it without installing anything, [download the project ZIP](https://github.com/linnoff88-dev/ia-com-rota-reserva/archive/refs/heads/main.zip), extract the folder, and double-click `guia/index.html`.
 
 To use a local server, make sure you have [Python 3](https://www.python.org/downloads/). On Windows, open the extracted folder in File Explorer, type `powershell` in the address bar, and press Enter. On macOS or Linux, open a terminal inside the extracted folder. Confirm the installation with `python3 --version` or, on Windows, `py -3 --version`.
 

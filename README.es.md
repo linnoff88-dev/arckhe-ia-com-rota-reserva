@@ -1,10 +1,10 @@
 # IA com Rota Reserva
 
-[![IA com Rota Reserva](guia/assets/hero.jpg)](https://inematds.github.io/ia-com-rota-reserva/guia/es/)
+[![IA com Rota Reserva](guia/assets/hero.jpg)](https://linnoff88-dev.github.io/
 
 **[Português](README.md) · [English](README.en.md) · [Español](README.es.md)**
 
-[Abre la guía y prueba la ruta alternativa](https://inematds.github.io/ia-com-rota-reserva/guia/es/)
+[Abre la guía y prueba la ruta alternativa](https://linnoff88-dev.github.io/
 
 🎬 [Video en portugués](https://www.youtube.com/watch?v=R_Mf8iMYAQk)
 
@@ -14,11 +14,11 @@ IA con Ruta de Respaldo es una guía con una demostración para quienes quieren 
 
 **Solicitud para tu asistente**
 
-> Quiero probar una ruta de respaldo para un configurador ficticio de auriculares. El resultado debe cambiar el color y girar la vista. Usa como contexto https://inematds.github.io/ia-com-rota-reserva/guia/es/ . Sugiere una herramienta y una prueba que pueda verificar. Indica dónde se procesarían los datos y cuánto podría costar. Espera mi aprobación antes de usar servicios externos o cambiar configuraciones.
+> Quiero probar una ruta de respaldo para un configurador ficticio de auriculares. El resultado debe cambiar el color y girar la vista. Usa como contexto https://linnoff88-dev.github.io/ . Sugiere una herramienta y una prueba que pueda verificar. Indica dónde se procesarían los datos y cuánto podría costar. Espera mi aprobación antes de usar servicios externos o cambiar configuraciones.
 
 ## Instalación técnica
 
-Para probarlo sin instalar nada, [descarga el ZIP del proyecto](https://github.com/inematds/ia-com-rota-reserva/archive/refs/heads/main.zip), extrae la carpeta y haz doble clic en `guia/index.html`.
+Para probarlo sin instalar nada, [descarga el ZIP del proyecto](https://github.com/linnoff88-dev/ia-com-rota-reserva/archive/refs/heads/main.zip), extrae la carpeta y haz doble clic en `guia/index.html`.
 
 Para usar un servidor local, asegúrate de tener [Python 3](https://www.python.org/downloads/). En Windows, abre la carpeta extraída en el Explorador de archivos, escribe `powershell` en la barra de direcciones y pulsa Enter. En macOS o Linux, abre una terminal dentro de la carpeta extraída. Confirma la instalación con `python3 --version` o, en Windows, `py -3 --version`.
 

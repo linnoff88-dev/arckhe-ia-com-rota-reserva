@@ -1,4 +1,4 @@
-﻿# IA com Rota Reserva
+# IA com Rota Reserva
 
 <div align="center">
   <img src="capa/logo.svg" alt="Arckhé AI" height="48" />
@@ -6,11 +6,11 @@
 </div>
 
 
-[![IA com Rota Reserva](guia/assets/hero.jpg)](https://inematds.github.io/ia-com-rota-reserva/guia/)
+[![IA com Rota Reserva](guia/assets/hero.jpg)](https://linnoff88-dev.github.io/
 
 **[PortuguÃªs](README.md) Â· [English](README.en.md) Â· [EspaÃ±ol](README.es.md)**
 
-[Abra o guia e teste a rota reserva](https://inematds.github.io/ia-com-rota-reserva/guia/)
+[Abra o guia e teste a rota reserva](https://linnoff88-dev.github.io/
 
 ðŸŽ¬ [VÃ­deo em portuguÃªs](https://www.youtube.com/watch?v=R_Mf8iMYAQk)
 
@@ -20,11 +20,11 @@ IA com Rota Reserva Ã© um guia com uma demonstraÃ§Ã£o para quem quer exper
 
 **Pedido para seu assistente**
 
-> Quero experimentar uma rota reserva para um configurador fictÃ­cio de fones. O resultado precisa mudar a cor e girar a vista. Use como contexto https://inematds.github.io/ia-com-rota-reserva/guia/ . Sugira uma ferramenta e um teste que eu consiga conferir. Diga onde os dados seriam processados e quanto poderia custar. Aguarde meu aval antes de usar serviÃ§os externos ou alterar configuraÃ§Ãµes.
+> Quero experimentar uma rota reserva para um configurador fictÃ­cio de fones. O resultado precisa mudar a cor e girar a vista. Use como contexto https://linnoff88-dev.github.io/ . Sugira uma ferramenta e um teste que eu consiga conferir. Diga onde os dados seriam processados e quanto poderia custar. Aguarde meu aval antes de usar serviÃ§os externos ou alterar configuraÃ§Ãµes.
 
 ## InstalaÃ§Ã£o tÃ©cnica
 
-Para testar sem instalar nada, [baixe o ZIP do projeto](https://github.com/inematds/ia-com-rota-reserva/archive/refs/heads/main.zip), extraia a pasta e dÃª dois cliques em `guia/index.html`.
+Para testar sem instalar nada, [baixe o ZIP do projeto](https://github.com/linnoff88-dev/ia-com-rota-reserva/archive/refs/heads/main.zip), extraia a pasta e dÃª dois cliques em `guia/index.html`.
 
 Para usar um servidor local, confirme que tem [Python 3](https://www.python.org/downloads/). No Windows, abra a pasta extraÃ­da no Explorador de Arquivos, digite `powershell` na barra de endereÃ§o e pressione Enter. No macOS ou Linux, abra o terminal dentro da pasta extraÃ­da. Confirme a instalaÃ§Ã£o com `python3 --version` ou `py -3 --version` no Windows.
 
